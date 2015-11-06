@@ -1,0 +1,88 @@
+{% extends 'layout/base.html' %}
+
+{% block css %}
+{% endblock %}
+
+{% block content_top %}
+    <div class="stage">
+	    <div class="container">
+	        <div class="row">
+	            <div class="badge-stage-left col-md-8">
+	                <div class="post-list-t1">
+	                    <div class="badge-video-cover item clearfix">
+	                        <iframe allowfullscreen="true" src="https://www.youtube.com/embed/{{ post.id }}?autohide=1&amp;autoplay=0&amp;controls=1&amp;modestbranding=0&amp;rel=0&amp;showinfo=0&amp;theme=dark&amp;vq=hd720&amp;iv_load_policy=3" frameborder="0" width="100%" height="380"></iframe>
+	                    </div>
+	                </div>
+	                <div class="youtube-bar clearfix">
+	                    <div class="pull-left">
+	                        <!-- <div class="widget">
+	                            <h4 class="cta">
+	                                <b>Subscribe to 9GAG</b>
+	                            </h4>
+	                        </div> -->
+	                    </div>
+
+	                    <div class="pull-right hidden-xs">
+	                        
+	                    </div>
+	                </div>
+	            </div>
+
+	            <div class="col-md-4 hidden-xs hidden-sm">
+	                <div class="playlist" style="height: 440px;">
+	                    <div class="viewport" style="height: 440px;">
+	                        <div class="overview" style="top: -78.859375px;">
+	                            <div class="badge-post-grid-container post-list-t1 horizontal sidebar col-4">
+	                            	{% for obj in rand %}
+		                                <div class="badge-grid-item">
+		                                    <div class="item clearfix post-playlist ">
+		                                        <a class="img-container" href="{% url 'posts:detail' obj.id obj.slug %}">
+		                                            <div class="responsivewrapper" style="background: url(&#39;https://i.ytimg.com/vi/{{ obj.id }}/default.jpg&#39;) center; background-size: cover;"></div>
+		                                        </a>
+		                                        <div class="info">
+		                                            <a class="title" href="{% url 'posts:detail' obj.id obj.slug %}">
+		                                                <h4>{{ obj.name }}</h4>
+		                                            </a>
+		                                            <div class="meta">
+		                                                <p>{{ obj.videoDurationFe }}</p>
+		                                            </div>
+		                                        </div>
+		                                    </div>
+		                                </div>
+	                                {% endfor %}
+	                            </div>
+	                            <!--end .post-list-t1-->
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	        <!-- / row -->
+	    </div>
+	    <!-- / container -->
+	</div>
+{% endblock %}
+
+{% block content_left %}
+	<div class="col-md-8">
+        <article class="article-t1">
+            <div id="jsid-post-single-meta-container">
+                <header class="header-t1">
+                    <h1>{{ post.name }} <small>{{ post.videoDurationFe }}</small></h1>
+                    <p class="meta">
+                        <b>{{ post.externalView }}</b> views
+                    </p>
+                    <p id="jsid-description">{{ post.description }}.</p>
+                </header>
+            </div>
+        </article>
+        <div id="comment" class="block-comment">
+            <div class="badge-comment-content fb-comments-responsive">
+                <div class="fb-comments" data-href="http://bideox.com/p/{{ post.id }}/{{ post.slug }}" data-colorscheme="light" data-numposts="15" data-width="100%"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+{% endblock %}

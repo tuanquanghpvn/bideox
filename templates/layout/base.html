@@ -1,0 +1,112 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>{{ info.title }}</title>
+        <link rel="icon" href="{% static 'frontend/images/favicon.ico' %}" />
+        <link rel="image_src" href="{% static 'frontend/images/logo.png' %}" / >
+        <meta http-equiv="Cache-control" content="public">        
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="theme-color" content="#ffffff">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="You are looking at the bideox.com! bideox.com is the easiest way to have fun!">
+        <meta name="keywords" content="bideox,tv,video,jokes,interesting,cool,fun collection,fun portfolio, admire,fun,humor,humour,just for fun,笑圖,笑片,搞笑,笑話">
+        
+        <!-- <link rel="stylesheet" href="{% static 'frontend/css/bootstrap.min.css' %}"> -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'frontend/css/jarvis-main.min.css' %}">
+        <link rel="stylesheet" href="{% static 'frontend/css/jarvis-tv.min.css' %}">
+        <link rel="stylesheet" href="{% static 'frontend/css/jarvis-theme-2.min.css' %}">
+        <link rel="stylesheet" href="{% static 'frontend/css/custom.css' %}">
+
+        {% block css %}
+        {% endblock %}
+    </head>
+
+    <body>
+        {% include 'layout/nav.html' %}
+
+        {% include 'layout/menu.html' %}
+
+        <section class="content">
+            {% block content_top %}
+            {% endblock %}
+
+            <div class="listview">
+                <div class="container">
+                    <div class="row">
+                        {% block content_left %}
+                        {% endblock %}
+
+                        {% block content_right %}
+                            <div class="col-md-4 hidden-sm hidden-xs">
+                                <div class="sidebar">
+                                    <div class="section-header">
+                                        <h3>Most Popular</h3>
+                                    </div>
+
+                                    <div class="post-list-t1">
+                                        <div class="badge-post-grid-container">
+                                            {% for obj in most_popular %}
+                                                <div class="badge-grid-item badge-post-item-aqNN6y">
+                                                    <div class="item clearfix r-17-7">
+                                                        <a class="img-container" href="{% url 'posts:detail' obj.id obj.slug %}">
+                                                            <div class="responsivewrapper" style="background: url(&#39;https://i.ytimg.com/vi/{{ obj.id }}/hqdefault.jpg&#39;) center; background-size: cover;"></div>
+                                                        </a>
+                                                        <div class="info">
+                                                            <a class="title" href="{% url 'posts:detail' obj.id obj.slug %}">
+                                                                <h4>{{ obj.name }} <small>{{ obj.videoDurationFe }}</small></h4>
+                                                            </a>
+                                                            <div class="meta">
+                                                                <p>{{ obj.description }}.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endblock %}                        
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        {% include 'layout/footer.html' %}
+
+        {% block js %}
+            <script>
+              window.fbAsyncInit = function() {
+                FB.init({
+                  appId      : '159740451027848',
+                  xfbml      : true,
+                  version    : 'v2.4'
+                });
+              };
+
+              (function(d, s, id){
+                 var js, fjs = d.getElementsByTagName(s)[0];
+                 if (d.getElementById(id)) {return;}
+                 js = d.createElement(s); js.id = id;
+                 js.src = "//connect.facebook.net/en_US/sdk.js";
+                 fjs.parentNode.insertBefore(js, fjs);
+               }(document, 'script', 'facebook-jssdk'));
+            </script>
+
+            <script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-66675447-1', 'auto');
+              ga('send', 'pageview');
+
+            </script>
+        {% endblock %}        
+    </body>
+</html>

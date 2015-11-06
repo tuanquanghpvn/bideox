@@ -1,0 +1,12 @@
+.item:hover .exp-120514-buttons{opacity:1;}
+.post-list-t1.cover .col-md-6, .post-list-t1.cover .col-md-3{padding:0;}
+.paging-buttons{overflow:hidden;padding: 10px;}
+.paging-buttons > a{margin-right: 10px;display:block;float:left;background-color:#00A5F0;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;font-size:12px;font-weight:bold;text-align:center;color:#fff;height:36px;line-height:36px;width:46%;border:1px solid rgba(0, 0, 0, .2);box-shadow:0 0 0 1px rgba(255, 255, 255, .4) inset, 0 1px #fff;-moz-box-shadow:0 0 0 1px rgba(255, 255, 255, .4) inset, 0 1px #fff;-webkit-box-shadow:0 0 0 1px rgba(255, 255, 255, .4) inset, 0 1px #fff;text-shadow:0 -1px rgba(0, 0, 0, .2);}
+.paging-buttons > a.disabled{opacity:.2;cursor:default;box-shadow:0 0 0 1px rgba(255, 255, 255, .4) inset, 0 1px #fff;-moz-box-shadow:0 0 0 1px rgba(255, 255, 255, .4) inset, 0 1px #fff;-webkit-box-shadow:0 0 0 1px rgba(255, 255, 255, .4) inset, 0 1px #fff;}
+@media(min-width:992px){.post-list-t1.cover .badge-grid-item:first-child .col-md-3{width:50%;}
+}
+@media(min-width:768px){.post-list-t1.cover .hero h4,
+.post-list-t1.cover .badge-grid-item:first-child .col-md-3 h4{font-size:2em;}
+}
+@media(min-width:768px) and (max-width:991px){.post-list-t1.cover .badge-grid-item:nth-child(n+2) .col-md-3{width:50%;float:left;}
+}

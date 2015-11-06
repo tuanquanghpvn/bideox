@@ -1,0 +1,14 @@
+<div class="channel-bar">
+    <div class="container">
+        <ul class="nav nav-tabs channel">
+        	<li {% if active == 'home' %} class="active" {% endif %}>
+                <a href="/">Home</a>
+            </li>
+        	{% for obj in category %}
+	            <li {% if active == obj.slug.lower %} class="active" {% endif %}>
+                    <a href="{% url 'categories:list' obj.id obj.slug.lower %}">{{ obj.name }}</a>
+	            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

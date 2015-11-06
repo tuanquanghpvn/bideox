@@ -1,0 +1,73 @@
+{% extends 'layout/base.html' %}
+
+{% block css %}
+{% endblock %}
+
+{% block content_top %}
+    <div class="post-list-t1 cover">
+        <div class="badge-post-grid-container row no-gutter">
+            {% for obj in object_list %}
+                {% if forloop.counter <= 5 %}
+                    <div class="badge-grid-item">
+                        <div class="col-md-3">
+                            <div class="item">
+                                <a class="img-container" href="{% url 'posts:detail' obj.id obj.slug %}">
+                                    <div class="responsivewrapper" style="background: url(&#39;https://i.ytimg.com/vi/{{ obj.id }}/hqdefault.jpg&#39;) center; background-size: cover;"></div>
+                                </a>
+                                <div class="info">
+                                    <a class="title" href="{% url 'posts:detail' obj.id obj.slug %}">
+                                        <h4>{{ obj.name }}</h4>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block content_left %}
+    <div class="col-md-8">
+        <div class="main">
+            <div class="badge-post-grid-container post-list-t1 horizontal col-4">
+                {% for obj in object_list %}
+                    {% if forloop.counter > 5 %}
+                        <div class="badge-grid-item">
+                            <div class="item twoColumn-left clearfix">
+                                <a class="img-container" href="{% url 'posts:detail' obj.id obj.slug %}">
+                                    <div class="responsivewrapper" style="background: url(&#39;https://i.ytimg.com/vi/{{ obj.id }}/mqdefault.jpg&#39;) center; background-size: cover;"></div>
+                                </a>
+                                <div class="info">
+                                    <a class="title" href="{% url 'posts:detail' obj.id obj.slug %}">
+                                        <h4>{{ obj.name }} <small>{{ obj.videoDurationFe }}</small></h4>
+                                    </a>
+                                    <div class="meta">
+                                        <p>{{ obj.description }}.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="paging-buttons">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}" class="previous"><span aria-hidden="true">&larr;</span> Previous</a>
+            {% else %}
+                <a href="#" class="previous disabled" onclick="return false;"><span aria-hidden="true">&larr;</span> Previous</a>
+            {% endif %}
+            
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="next">Next <span aria-hidden="true">&rarr;</span></a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+{% endblock %}
+
