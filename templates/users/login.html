@@ -1,5 +1,9 @@
 {% extends 'layout/base.html' %}
+
 {% load staticfiles %}
+
+{% load socialaccount %}
+{% providers_media_js %}
 
 {% block css %}
     <link href="{% static 'frontend/css/gag.min.css' %}" media="screen,projection" rel="stylesheet" type="text/css">    
@@ -14,7 +18,9 @@
             <h2>Login</h2>
             <p class="lead">Connect with a social network</p>
             <div class="social-signup">
-                <a class="btn-connect-option facebook badge-facebook-connect" href="#">Facebook</a>
+                <!--<a class="btn-connect-option facebook badge-facebook-connect" href="{% provider_login_url "facebook" method="js_sdk" %}">Facebook</a>-->
+
+                <a class="btn-connect-option facebook badge-facebook-connect" href="{% provider_login_url "facebook" method="oauth2" %}">Facebook</a>
 
                 <span class="badge-gplus-connect">
                     <a class="btn-connect-option google-plus" href="#">Google</a>
@@ -45,4 +51,7 @@
 {% endblock %}
 
 {% block content_right %}
+{% endblock %}
+
+{% block js %}
 {% endblock %}

@@ -18,6 +18,7 @@ from django.conf.urls import include, url
 urlpatterns = [
     url(r'^', include('apps.posts.urls', namespace='posts')),
     url(r'^channel/', include('apps.categories.urls', namespace='categories')),
+    url(r'^accounts/', include('allauth.urls')),
     url(r'^users/', include('apps.users.urls', namespace='users')),
     url(r'^admin/', include('apps.admin.urls', namespace='admin')),
 ]
