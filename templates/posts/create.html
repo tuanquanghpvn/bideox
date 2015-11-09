@@ -1,0 +1,93 @@
+{% extends 'layout/base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+{% endblock %}
+
+{% block content_top %}
+{% endblock %}
+
+{% block content_left %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="page-header">
+                    <h1>Submit video</h1>
+                </div>
+            </div>
+            <!-- / col-md-12 -->
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-md-push-8 hidden-sm hidden-xs">
+                <div class="user-upload-preview">
+                    <div class="responsivewrapper">
+                        <p class=""><iframe src="" allowfullscreen="" autoplay="0" frameborder="0"></iframe></p>
+                    </div>
+                    <!-- responsivewrapper -->
+                </div>
+                <!-- / user-upload-preview -->
+            </div>
+            <!-- / col-md-4-->
+            <div class="col-md-8 col-md-pull-4">
+                <div class="user-upload-form">
+                    <form class="form-user-upload" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input class="form-control" name="name" value="" type="hidden">
+                            <input class="form-control" name="slug" value="" type="hidden">
+                            <input class="form-control" name="videoDurationFe" value="" type="hidden">
+                            <input class="form-control" name="externalView" value="" type="hidden">
+
+                            <input id="id_url" class="form-control" placeholder="Paste Video Link..." type="url">
+                            <div class="alert alert-danger hide">
+                                Some Thing Wong!
+                            </div>
+                            <!-- / alert -->
+                        </div>
+                        <!-- / form-group -->
+                        <div class="form-group">
+                            <input id="id_name" name="name" class="form-control badge-form-check-object" placeholder="Name" type="text">
+                        </div>
+                        <!-- / form-group -->
+                        <div class="form-group">
+                            <textarea name="description" class="form-control" rows="8" placeholder="Description (Optional)"></textarea>
+                        </div>
+                        <!-- / formgroup -->
+                        <div class="form-group">
+                            <label>Channel:</label>
+                            <p>
+                                {% for cat in category %}
+                                <label class="radio-inline">
+                                    <input name="category" value="{{ cat.id }}" type="radio"> {{ cat.name }}
+                                </label>
+                                {% endfor %}
+                            </p>
+                        </div>
+                        <!-- / form-group -->
+                        <div class="btn-container">
+                            <a class="btn btn-primary badge-evt" href="#">Save</a>
+                        </div>
+                        <!-- / btn-container -->
+                    </form>
+                </div>
+                <!-- / user-upload-form -->
+            </div>
+            <!-- / col-md-8 -->
+        </div>
+    </div>
+{% endblock %}
+
+{% block content_right %}
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#id_url").change(function() {
+                var str = $(this).val();
+                alert(str);
+            });
+        });
+    </script>
+{% endblock %}

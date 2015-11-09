@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic.base import ContextMixin
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import permission_required
-
+from django.contrib.auth.decorators import login_required
 
 from apps.categories.models import Category
 from apps.posts.models import Post
@@ -18,5 +18,10 @@ class BaseView(ContextMixin):
     
 class AdminRequiredMixin(object):
     @method_decorator(permission_required('is_superuser', login_url='/admin/login'))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+class LoginRequiredMixin(object):
+    @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)

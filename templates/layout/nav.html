@@ -26,14 +26,14 @@
 
                 <ul class="badge-user-functions">
                     <li>                        
-                        <a class="badge-upload-btn upload-btn badge-evt" style="padding: 22px 0;" href="#"><i class="fa fa-plus fa-lg"></i></a>
+                        <a class="badge-upload-btn upload-btn badge-evt" style="padding: 22px 0;" href="{% url 'posts:create' %}"><i class="fa fa-plus fa-lg"></i></a>
                     </li>
                 </ul>
             {% else %}
                 <ul class="badge-user-functions">
                     <li id="jsid-notification-toggle" class="dropdown">
                         <a href="{% url 'users:login' %}" class="badge-account-login badge-evt btn btn-primary navbar-btn pull-right visitor-signin-btn">Sign in</a>
-                        <a href="#" class="badge-upload-btn upload-btn badge-evt" href="#"><i class="fa fa-plus fa-lg"></i></a>
+                        <a class="badge-upload-btn upload-btn badge-evt" href="{% url 'posts:create' %}"><i class="fa fa-plus fa-lg"></i></a>
                     </li>
                 </ul>
             {% endif %}
