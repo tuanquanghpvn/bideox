@@ -10,7 +10,7 @@ class PostListView(BaseView, ListView):
     paginate_by = 15 
 
     def get_queryset(self):
-        return Post.objects.order_by('dateCreate')
+        return Post.objects.order_by('-dateCreate')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

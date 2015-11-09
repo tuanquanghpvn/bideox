@@ -1,0 +1,48 @@
+{% extends 'layout/base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+    <link href="{% static 'frontend/css/gag.min.css' %}" media="screen,projection" rel="stylesheet" type="text/css">    
+{% endblock %}
+
+{% block content_top %}
+{% endblock %}
+
+{% block content_left %}
+    <div class="badge-page page">
+        <section id="signup">
+            <h2>Login</h2>
+            <p class="lead">Connect with a social network</p>
+            <div class="social-signup">
+                <a class="btn-connect-option facebook badge-facebook-connect" href="#">Facebook</a>
+
+                <span class="badge-gplus-connect">
+                    <a class="btn-connect-option google-plus" href="#">Google</a>
+                </span> 
+            </div>
+
+            <form id="login-email" class="badge-login-form" action="" method="POST">
+                {% csrf_token %}
+                <p class="lead">Log in with your email address </p>
+                <div class="field">
+                    <label>Username</label>
+                    <input type="text" name="username" value="{{ form.username.value|default_if_none:'' }}" autofocus="autofocus">                    
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    <input type="password" name="password" value="">
+                    {% if form.non_field_errors %}
+                        <p class="error-message red">Wrong Username/Email and password combination.</p>
+                    {% endif %}
+                </div>
+                <div class="btn-container">
+                    <input class="btn left" type="submit" value="Log in">
+                    <a class="forgot-password" href="#">Forgot Password</a>                    
+                </div>
+            </form>
+        </section>
+    </div>
+{% endblock %}
+
+{% block content_right %}
+{% endblock %}

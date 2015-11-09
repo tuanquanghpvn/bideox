@@ -16,10 +16,13 @@
         
         <!-- <link rel="stylesheet" href="{% static 'frontend/css/bootstrap.min.css' %}"> -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="{% static 'frontend/css/jarvis-main.min.css' %}">
-        <link rel="stylesheet" href="{% static 'frontend/css/jarvis-tv.min.css' %}">
+        <link rel="stylesheet" href="{% static 'frontend/css/jarvis-tv.min.css' %}">        
         <link rel="stylesheet" href="{% static 'frontend/css/jarvis-theme-2.min.css' %}">
         <link rel="stylesheet" href="{% static 'frontend/css/custom.css' %}">
+
+        <link rel="stylesheet" href="{% static 'frontend/css/jarvis-lib.min.css' %}">
 
         {% block css %}
         {% endblock %}
@@ -78,6 +81,9 @@
         
         {% include 'layout/footer.html' %}
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
         {% block js %}
             <script>
               window.fbAsyncInit = function() {
@@ -92,7 +98,7 @@
                  var js, fjs = d.getElementsByTagName(s)[0];
                  if (d.getElementById(id)) {return;}
                  js = d.createElement(s); js.id = id;
-                 js.src = "//connect.facebook.net/en_US/sdk.js";
+                 js.src = "http://connect.facebook.net/en_US/sdk.js";
                  fjs.parentNode.insertBefore(js, fjs);
                }(document, 'script', 'facebook-jssdk'));
             </script>

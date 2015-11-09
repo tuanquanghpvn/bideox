@@ -8,13 +8,13 @@ from apps.posts.models import Post
 class CategoryListView(BaseView, ListView):
     model = Post
     template_name = 'categories/index.html'
-    paginate_by = 6
+    paginate_by = 10
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         info = {
             'info': {
-                'title': Category.objects.get(id=self.kwargs['pk']).name 
+                'title': Category.objects.get(id=self.kwargs['pk']).name
             }
         }
         context.update(info)
