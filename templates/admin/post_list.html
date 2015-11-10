@@ -36,7 +36,6 @@
                                 <th>Author</th>
                                 <th>Name</th>
                                 <th>Slug</th>
-                                <th>Description</th>
                                 <th class="text-center" style="width: 200px">Action</th>
                             </tr>
                             {% for item in object_list %}
@@ -48,11 +47,10 @@
                                     <td>{{ item.profile.user.username }}</td>
                                     <td>{{ item.name }}</td>
                                     <td>{{ item.slug }}</td>
-                                    <td>{{ item.description }}</td>
                                     <td class="text-center">                                        
-                                        <a href="{% url 'admin:post_update' item.id %}">
+                                        <!--<a href="{% url 'admin:post_update' item.id %}">
                                             <span class="badge">Update</span>
-                                        </a>
+                                        </a>-->
                                         <a href="#" data-href="{% url 'admin:post_delete' item.id %}" data-toggle="modal" data-target="#confirm-delete">
                                             <span class="badge bg-red">Delete</span>
                                         </a>

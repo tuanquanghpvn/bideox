@@ -51,6 +51,8 @@ INSTALLED_APPS = (
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
+
+    'rest_framework',
 )
 
 SITE_ID = 1
@@ -149,3 +151,4 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+YOUTUBE_API_KEY = "AIzaSyDTSUSamcmOLp-rnGtLAYL02WqqcKGhgVc"

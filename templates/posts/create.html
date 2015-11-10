@@ -34,24 +34,29 @@
                     <form class="form-user-upload" method="POST">
                         {% csrf_token %}
                         <div class="form-group">
-                            <input class="form-control" name="name" value="" type="hidden">
-                            <input class="form-control" name="slug" value="" type="hidden">
-                            <input class="form-control" name="videoDurationFe" value="" type="hidden">
-                            <input class="form-control" name="externalView" value="" type="hidden">
+                            <input class="form-control" id="id_video" name="id" value="" type="hidden">
+                            <input class="form-control" id="id_videoDurationFe" name="videoDurationFe" value="" type="hidden">
 
                             <input id="id_url" class="form-control" placeholder="Paste Video Link..." type="url">
-                            <div class="alert alert-danger hide">
-                                Some Thing Wong!
-                            </div>
+                            {% if form.id.errors %}
+                                <div class="alert alert-danger">
+                                    Youtube link already exists.
+                                </div>
+                            {% endif %}
                             <!-- / alert -->
                         </div>
                         <!-- / form-group -->
                         <div class="form-group">
                             <input id="id_name" name="name" class="form-control badge-form-check-object" placeholder="Name" type="text">
+                            {% if form.name.errors %}
+                                <div class="alert alert-danger">
+                                    This field is required.
+                                </div>
+                            {% endif %}
                         </div>
                         <!-- / form-group -->
                         <div class="form-group">
-                            <textarea name="description" class="form-control" rows="8" placeholder="Description (Optional)"></textarea>
+                            <textarea name="description" id="id_description" class="form-control" rows="8" placeholder="Description (Optional)"></textarea>
                         </div>
                         <!-- / formgroup -->
                         <div class="form-group">
@@ -63,10 +68,15 @@
                                 </label>
                                 {% endfor %}
                             </p>
+                            {% if form.category.errors %}
+                                <div class="alert alert-danger">
+                                    This field is required.
+                                </div>
+                            {% endif %}
                         </div>
                         <!-- / form-group -->
                         <div class="btn-container">
-                            <a class="btn btn-primary badge-evt" href="#">Save</a>
+                            <button class="btn btn-primary badge-evt" type="submit">Save</button>
                         </div>
                         <!-- / btn-container -->
                     </form>
@@ -83,11 +93,23 @@
 
 {% block js %}
     <script type="text/javascript">
-        $(document).ready(function() {
-            $("#id_url").change(function() {
-                var str = $(this).val();
-                alert(str);
-            });
+        $("#id_url").change(function() {
+            var str = $(this).val();
+            if (str) {
+                $.get("/parse", { url: str })
+                .done(function(data) {                
+                    set_value(data);
+                });
+            } else {
+
+            };
         });
+
+        function set_value(data) {
+            $('#id_video').val(data.id);
+            $('#id_name').val(data.name);
+            $('#id_videoDurationFe').val(data.videoDurationFe);
+            $('#id_description').val(data.description);
+        };
     </script>
 {% endblock %}

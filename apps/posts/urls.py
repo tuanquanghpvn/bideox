@@ -7,5 +7,8 @@ urlpatterns = [
     url(r'^p/(?P<id>.+)/(?P<slug>.+)/$', views.PostDetailView.as_view(),
                                                             name="detail"),
     url(r'^create/video/$', views.PostCreateView.as_view(),
-    														name="create"),
+                                                            name="create"), 
+    url(r'^parse/$', views.CheckInfoYoutubeView.as_view(),
+                                                            name="parse"),
+
 ]
