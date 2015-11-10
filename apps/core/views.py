@@ -3,11 +3,16 @@ from django.views.generic.base import ContextMixin
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.gzip import gzip_page
 
 from apps.categories.models import Category
 from apps.posts.models import Post
 
 class BaseView(ContextMixin):
+    @method_decorator(gzip_page)
+    def dispatch(self, request, *args, **kwargs):
+        return super(BaseView, self).dispatch(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['category'] = Category.objects.all()

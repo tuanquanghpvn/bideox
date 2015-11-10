@@ -27,12 +27,12 @@
                 </a>
 
                 <ul class="treeview-menu">
-                    <li class="{% if 'post' in info.sidebar %} active {% endif %}">
+                    <li class="{% if 'post_list' in info.sidebar %} active {% endif %}">
                         <a href="{% url 'admin:post_list' %}"><i class="fa fa-circle-o"></i> All Posts</a>
                     </li>
-                    <li class="{% if 'post' in info.sidebar %} active {% endif %}">
+                    <!--<li class="{% if 'post_create' in info.sidebar %} active {% endif %}">
                         <a href="{% url 'admin:post_create' %}"><i class="fa fa-circle-o"></i> Add New</a>
-                    </li>
+                    </li>-->
                     <li class="{% if 'category' in info.sidebar %} active {% endif %}">
                         <a href="{% url 'admin:category_list' %}"><i class="fa fa-circle-o"></i> Categories</a>
                     </li>

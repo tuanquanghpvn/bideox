@@ -9,8 +9,8 @@ from django.views.generic import (
     CreateView, FormView,
 )
 from django.contrib.auth.forms import (
-        UserCreationForm,
-        AuthenticationForm,
+    UserCreationForm,
+    AuthenticationForm,
 )
 
 from apps.core.views import BaseView

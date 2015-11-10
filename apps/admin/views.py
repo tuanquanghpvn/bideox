@@ -123,7 +123,7 @@ class PostListView(AdminRequiredMixin, ListView):
         info = {
             'info': {
                 'title': 'Post List',
-                'sidebar': ['parent_post', 'post'],
+                'sidebar': ['parent_post', 'post_list'],
             },
         }
         context.update(info)
@@ -139,7 +139,7 @@ class PostCreateView(AdminRequiredMixin, CreateView):
         info = {
             'info': {
                 'title': 'Post Create',
-                'sidebar': ['parent_post', 'post'],
+                'sidebar': ['parent_post', 'post_create'],
             },
         }
         context.update(info)

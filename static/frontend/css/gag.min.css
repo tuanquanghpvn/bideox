@@ -161,6 +161,13 @@ select {
     margin-top: 10px
 }
 
+ul.errorlist li {
+    font-size: 12px;
+    color: red;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
 .field.checkbox {
     margin: 10px 0
 }

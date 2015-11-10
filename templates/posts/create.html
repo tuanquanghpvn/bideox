@@ -40,7 +40,7 @@
                             <input id="id_url" class="form-control" placeholder="Paste Video Link..." type="url">
                             {% if form.id.errors %}
                                 <div class="alert alert-danger">
-                                    Youtube link already exists.
+                                    {{ form.id.errors }}
                                 </div>
                             {% endif %}
                             <!-- / alert -->
@@ -50,7 +50,7 @@
                             <input id="id_name" name="name" class="form-control badge-form-check-object" placeholder="Name" type="text">
                             {% if form.name.errors %}
                                 <div class="alert alert-danger">
-                                    This field is required.
+                                    {{ form.name.errors }}
                                 </div>
                             {% endif %}
                         </div>
@@ -70,7 +70,7 @@
                             </p>
                             {% if form.category.errors %}
                                 <div class="alert alert-danger">
-                                    This field is required.
+                                    {{ form.category.errors }}
                                 </div>
                             {% endif %}
                         </div>

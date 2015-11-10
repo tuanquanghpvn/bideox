@@ -1,5 +1,6 @@
 {% extends 'layout/base.html' %}
 {% load staticfiles %}
+{% load templatetags_posts %}
 
 {% block css %}
     <link rel="stylesheet" href="{% static 'frontend/css/jarvis-lib.min.css' %}">
@@ -37,6 +38,7 @@
 
                     <div id="jsid-post-single-shares-bottom-container">
                         <div class="post-bar">
+                            <!--
                             <div class="btn-container clearfix">
                                 <div class="pull-left hidden-xs hidden-sm">
                                     <a class="badge-upvote-btn badge-evt btn btn-invert btn-lg" data-evt="PostAction,Vote,Upvote" href="javascript:void(0);"><i class="fa fa-arrow-up"></i></a>
@@ -45,12 +47,11 @@
                                     </a>
                                 </div>
 
-                                <!-- / pull-left -->
                                 <div class="pull-right hidden-xs hidden-sm">
                                     
                                 </div>
-                                <!-- / pull-right -->
                             </div>
+                            -->
                         </div>
                     </div>
 	            </div>
@@ -97,7 +98,7 @@
                 <header class="header-t1">
                     <h1>{{ post.name }} <small>{{ post.videoDurationFe }}</small></h1>
                     <p class="meta">
-                        <b>{{ post.externalView }}</b> views
+                        <b>{{ post.externalView|format_number }}</b> views
                     </p>
                     <!--<p id="jsid-description">{{ post.description }}.</p>-->
                 </header>
