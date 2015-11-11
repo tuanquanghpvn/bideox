@@ -111,10 +111,25 @@ class CheckInfoYoutubeView(APIView):
     def get_info(self, url):
         m = self.youtube_url_validation(url)
         if m:
-            data = self.youtube_info_video(m)
+            recv = self.youtube_info_video(m)
+            if recv:
+                data = {
+                    'status': True,
+                    'message': 'Get youtube info success',
+                    'data': recv
+                }
+            else:
+                data = {
+                    'status': False,
+                    'message': 'Get youtube info fail',
+                }
             return data
         else:
-            pass
+            data = {
+                'status': False,
+                'message': 'Youtube url not valid'
+            }
+            return data
 
     def youtube_url_validation(self, url):
         youtube_regex = (
@@ -130,19 +145,22 @@ class CheckInfoYoutubeView(APIView):
         return youtube_regex_match
 
     def youtube_info_video(self, youtube_id):
-        url_request = "https://www.googleapis.com/youtube/v3/videos?part=snippet%2C+contentDetails&id="\
-                                                         + youtube_id + "&key=" + settings.YOUTUBE_API_KEY
-        response = requests.get(url_request)
-        video_detail = json.loads(response.text)
-        video_detail = video_detail['items'][0]
-        data = {
-            'id': youtube_id,
-            'name': video_detail['snippet']['title'],
-            'description': video_detail['snippet']['description'],
-            'videoDurationFe': video_detail['contentDetails']['duration']            
-        }
-        dur = isodate.parse_duration(data['videoDurationFe'])
-        data['videoDurationFe'] = str(dur)
-        return data    
+        try:        
+            url_request = "https://www.googleapis.com/youtube/v3/videos?part=snippet%2C+contentDetails&id="\
+                                                             + youtube_id + "&key=" + settings.YOUTUBE_API_KEY
+            response = requests.get(url_request)
+            video_detail = json.loads(response.text)
+            video_detail = video_detail['items'][0]
+            data = {
+                'id': youtube_id,
+                'name': video_detail['snippet']['title'],
+                'description': video_detail['snippet']['description'],
+                'videoDurationFe': video_detail['contentDetails']['duration']            
+            }
+            dur = isodate.parse_duration(data['videoDurationFe'])
+            data['videoDurationFe'] = str(dur)
+            return data
+        except:
+            return False
         
 

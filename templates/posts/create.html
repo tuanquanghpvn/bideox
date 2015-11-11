@@ -5,6 +5,24 @@
 {% endblock %}
 
 {% block content_top %}
+    <div class="alert-message-container">
+        <div class="alert-message-container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="jsid-alert-message" class="alert alert-success hide" style="margin-top: 10px;">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <span>Fetching data from source ...</span>
+                        </div>
+                        <!-- alert -->
+                    </div>
+                    <!-- / col-md-12 -->
+                </div>
+                <!-- / row -->
+            </div>
+            <!-- / container -->
+        </div>
+    </div>
 {% endblock %}
 
 {% block content_left %}
@@ -39,7 +57,7 @@
 
                             <input id="id_url" class="form-control" placeholder="Paste Video Link..." type="url">
                             {% if form.id.errors %}
-                                <div class="alert alert-danger">
+                                <div id="message_id" class="alert alert-danger">
                                     {{ form.id.errors }}
                                 </div>
                             {% endif %}
@@ -93,23 +111,49 @@
 
 {% block js %}
     <script type="text/javascript">
-        $("#id_url").change(function() {
-            var str = $(this).val();
+        $("#id_url").on('keyup keypress blur change', function() {
+            event();
+        });
+
+        function event() {
+            var str = $('#id_url').val();
             if (str) {
+                $('#jsid-alert-message').addClass('alert-success');
+                $('#jsid-alert-message span').text('Fetching data from source ...');
+                $('#jsid-alert-message').removeClass('hide');
+
                 $.get("/parse", { url: str })
-                .done(function(data) {                
-                    set_value(data);
+                .done(function(data) {
+                    if (data['status']) {
+                        set_value(data['data']);
+                    } else {
+                        $('#jsid-alert-message span').text('Not valid video url');
+                        $('#jsid-alert-message').removeClass('alert-success');
+                        $('#jsid-alert-message').addClass('alert-danger');
+                        clear_all();
+                        setTimeout(function() {
+                            $('#jsid-alert-message').addClass('hide');
+                        }, 3000);
+                    };
                 });
             } else {
 
             };
-        });
+        };
 
         function set_value(data) {
             $('#id_video').val(data.id);
             $('#id_name').val(data.name);
             $('#id_videoDurationFe').val(data.videoDurationFe);
             $('#id_description').val(data.description);
+        };
+
+        function clear_all() {
+            $('#id_url').val('');
+            $('#id_video').val('');
+            $('#id_name').val('');
+            $('#id_videoDurationFe').val('');
+            $('#id_description').val('');  
         };
     </script>
 {% endblock %}
