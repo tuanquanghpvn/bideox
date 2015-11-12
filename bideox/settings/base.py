@@ -117,8 +117,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'bideox',
         'USER': 'root',
-        'HOST': '104.238.160.95',
-        'PASSWORD': 'abc!@#ABC',
+        'HOST': '127.0.0.1',
+        'PASSWORD': '',
         'PORT': 3306
     }
 }
