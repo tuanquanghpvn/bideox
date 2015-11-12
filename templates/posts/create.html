@@ -111,8 +111,12 @@
 
 {% block js %}
     <script type="text/javascript">
+        var is_busy = False;
         $("#id_url").on('keyup keypress blur change', function() {
-            event();
+            if (!is_busy) {
+                is_busy = True;
+                event();
+            };
         });
 
         function event() {
@@ -125,6 +129,7 @@
 
                 $.get("/parse", { url: str })
                 .done(function(data) {
+                    is_busy = False;
                     if (data['status']) {
                         set_value(data['data']);
                     } else {
