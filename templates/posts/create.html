@@ -118,6 +118,7 @@
         function event() {
             var str = $('#id_url').val();
             if (str) {
+                console.log(new Date()); 
                 $('#jsid-alert-message').addClass('alert-success');
                 $('#jsid-alert-message span').text('Fetching data from source ...');
                 $('#jsid-alert-message').removeClass('hide');
