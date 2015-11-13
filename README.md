@@ -2,6 +2,10 @@
 
 ### Demo site: [http://bideox.com](http://bideox.com)
 
+### Feature:
+- Public API auto get video (NodeJs)
+- Port API (NodeJs) to Python (Run with thread)
+
 Project django
 
 ## Installation
