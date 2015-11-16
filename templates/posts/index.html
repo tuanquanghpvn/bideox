@@ -50,11 +50,12 @@
         myApp.controller('BideoxController', function($scope, $http) {
             var is_first = true;
             var url_request = '/api/post';
-            $scope.busy = true;
+            $scope.busy = false;
             $scope.tops = [];
             $scope.posts = [];
 
             $scope.loadMore = function() {
+                $scope.busy = true;
                 $http({
                     method: 'GET',
                     url: url_request
