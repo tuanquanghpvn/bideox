@@ -118,7 +118,7 @@ DATABASES = {
         'NAME': 'bideox',
         'USER': 'root',
         'HOST': '127.0.0.1',
-        'PASSWORD': 'abc!@#ABC',
+        'PASSWORD': '',
         'PORT': 3306
     }
 }

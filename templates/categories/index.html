@@ -7,7 +7,7 @@
 {% block content_left %}
     <div class="col-md-8">
         <div class="main">
-            <div class="badge-post-grid-container post-list-t1 horizontal col-4" infinite-scroll='loadMore()' infinite-scroll-distance='3'>
+            <div class="badge-post-grid-container post-list-t1 horizontal col-4" infinite-scroll='loadMore()' infinite-scroll-distance='6'>
                 <div ng-repeat="post in posts" class="badge-grid-item">
                     <div class="item twoColumn-left clearfix">
                         <a class="img-container" ng-href="/p/{$ post.id $}/{$ post.slug $}/">
