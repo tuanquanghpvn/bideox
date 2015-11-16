@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.core.urlresolvers import reverse, reverse_lazy
-from django.views.generic import (ListView, DetailView, CreateView)
+from django.views.generic import (
+    ListView, DetailView, CreateView,
+    TemplateView
+)
 from django.conf import settings
 from django.http import Http404
 
@@ -18,13 +21,8 @@ import json
 import re
 import isodate
 
-class PostListView(BaseView, ListView):
+class PostListView(BaseView, TemplateView):
     template_name = 'posts/index.html'
-    model = Post
-    paginate_by = 15 
-
-    def get_queryset(self):
-        return Post.objects.order_by('-dateCreate')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

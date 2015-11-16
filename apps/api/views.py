@@ -10,3 +10,12 @@ from apps.posts import serializers
 class PostListAPIView(generics.ListAPIView):
     queryset = Post.objects.order_by('-dateCreate')
     serializer_class = serializers.PostSerializer
+
+class CategoryListAPIView(generics.ListAPIView):
+    serializer_class = serializers.PostSerializer
+
+    def get_queryset(self):
+        slug = self.kwargs.get('slug')
+        return Post.objects.filter(category__slug=slug)\
+                .order_by('-dateCreate')
+

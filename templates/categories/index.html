@@ -7,38 +7,51 @@
 {% block content_left %}
     <div class="col-md-8">
         <div class="main">
-            <div class="badge-post-grid-container post-list-t1 horizontal col-4">
-                {% for obj in object_list %}
-                    <div class="badge-grid-item">
-                        <div class="item twoColumn-left clearfix">
-                            <a class="img-container" href="{% url 'posts:detail' obj.id obj.slug %}">
-                                <div class="responsivewrapper" style="background: url(&#39;https://i.ytimg.com/vi/{{ obj.id }}/mqdefault.jpg&#39;) center; background-size: cover;"></div>
+            <div class="badge-post-grid-container post-list-t1 horizontal col-4" infinite-scroll='loadMore()' infinite-scroll-distance='3'>
+                <div ng-repeat="post in posts" class="badge-grid-item">
+                    <div class="item twoColumn-left clearfix">
+                        <a class="img-container" ng-href="/p/{$ post.id $}/{$ post.slug $}/">
+                            <div class="responsivewrapper" style="background: url(&#39;https://i.ytimg.com/vi/{$ post.id $}/mqdefault.jpg&#39;) center; background-size: cover;"></div>
+                        </a>
+                        <div class="info">
+                            <a class="title" ng-href="/p/{$ post.id $}/{$ post.slug $}/">
+                                <h4>{$ post.name $} <small> {$ post.videoDurationFe $}</small></h4>
                             </a>
-                            <div class="info">
-                                <a class="title" href="{% url 'posts:detail' obj.id obj.slug %}">
-                                    <h4>{{ obj.name }} <small>{{ obj.videoDurationFe }}</small></h4>
-                                </a>
-                                <div class="meta">
-                                    <p>{{ obj.description }}.</p>
-                                </div>
+                            <div class="meta">
+                                <p style="text-align: justify;">{$ post.description | limitTo : 220 : 0 $}</p>
                             </div>
                         </div>
                     </div>
-                {% endfor %}
+                </div>
             </div>
         </div>
-
-        <div class="paging-buttons">
-            {% if page_obj.has_previous %}
-                <a href="?page={{ page_obj.previous_page_number }}" class="previous"><span aria-hidden="true">&larr;</span> Previous</a>
-            {% else %}
-                <a href="#" class="previous disabled" onclick="return false;"><span aria-hidden="true">&larr;</span> Previous</a>
-            {% endif %}
-            
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}" class="next">Next <span aria-hidden="true">&rarr;</span></a>
-            {% endif %}
-        </div>
     </div>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript">
+        myApp.controller('BideoxController', function($scope, $http) {
+            var url_request = '/api/category/{{ slug }}/';
+            $scope.posts = [];
+
+            $scope.loadMore = function() {
+                $http({
+                    method: 'GET',
+                    url: url_request
+                }).then(function successCallback(response) {
+                    // this callback will be called asynchronously
+                    // when the response is available
+                    if (response.status == 200) {
+                        var data = response.data;
+                        url_request = data.next;
+                        $scope.posts = $scope.posts.concat(data.results);
+                    };
+                }, function errorCallback(response) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                });
+            };
+        });
+    </script>
 {% endblock %}
 
