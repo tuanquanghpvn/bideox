@@ -7,7 +7,7 @@
 {% block content_left %}
     <div class="col-md-8">
         <div class="main">
-            <div class="badge-post-grid-container post-list-t1 horizontal col-4" infinite-scroll='loadMore()' infinite-scroll-distance='6'>
+            <div class="badge-post-grid-container post-list-t1 horizontal col-4" infinite-scroll='loadMore()' infinite-scroll-disabled='busy' infinite-scroll-distance='2'>
                 <div ng-repeat="post in posts" class="badge-grid-item">
                     <div class="item twoColumn-left clearfix">
                         <a class="img-container" ng-href="/p/{$ post.id $}/{$ post.slug $}/">
@@ -31,25 +31,34 @@
 {% block js %}
     <script type="text/javascript">
         myApp.controller('BideoxController', function($scope, $http) {
+            var old_request = '';
             var url_request = '/api/category/{{ slug }}/';
+            $scope.busy = false;
             $scope.posts = [];
 
             $scope.loadMore = function() {
-                $http({
-                    method: 'GET',
-                    url: url_request
-                }).then(function successCallback(response) {
-                    // this callback will be called asynchronously
-                    // when the response is available
-                    if (response.status == 200) {
-                        var data = response.data;
-                        url_request = data.next;
-                        $scope.posts = $scope.posts.concat(data.results);
-                    };
-                }, function errorCallback(response) {
-                    // called asynchronously if an error occurs
-                    // or server returns response with an error status.
-                });
+                $scope.busy = true;
+                if (url_request != old_request) {
+                    $http({
+                        method: 'GET',
+                        url: url_request
+                    }).then(function successCallback(response) {
+                        // this callback will be called asynchronously
+                        // when the response is available
+                        $scope.busy = false;
+                        if (response.status == 200) {
+                            var data = response.data;
+                            if (url_request != data.next) {
+                                old_request = url_request;
+                                url_request = data.next;
+                                $scope.posts = $scope.posts.concat(data.results);
+                            };
+                        };
+                    }, function errorCallback(response) {
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                    });
+                };
             };
         });
     </script>
