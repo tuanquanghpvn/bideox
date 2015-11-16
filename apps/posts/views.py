@@ -6,6 +6,7 @@ from django.http import Http404
 
 from apps.core.views import BaseView, LoginRequiredMixin
 from apps.posts.models import Post
+from . import serializers
 from apps.categories.models import Category
 
 from rest_framework.views import APIView
@@ -104,7 +105,7 @@ class CheckInfoYoutubeView(APIView):
         url = request.GET.get('url', False)
         if url:
             data = self.get_info(url)
-            return Response(data)
+            return Response(data, status=status.HTTP_200_OK)
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
@@ -162,5 +163,3 @@ class CheckInfoYoutubeView(APIView):
             return data
         except:
             return False
-        
-

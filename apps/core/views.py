@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.gzip import gzip_page
 
+from rest_framework.pagination import PageNumberPagination
+
 from apps.categories.models import Category
 from apps.posts.models import Post
 

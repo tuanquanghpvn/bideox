@@ -16,6 +16,7 @@
         
         <!-- <link rel="stylesheet" href="{% static 'frontend/css/bootstrap.min.css' %}"> -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         
         <link rel="stylesheet" href="{% static 'frontend/css/jarvis-main.min.css' %}">
         <link rel="stylesheet" href="{% static 'frontend/css/jarvis-tv.min.css' %}">        
@@ -77,6 +78,9 @@
                     </div>
                 </div>
             </div>
+            <a class="badge-back-to-top back-to-top" href="javascript: void(0);" style="display: none;">
+                <i class="fa fa-arrow-up"></i>
+            </a>
         </section>
         
         {% include 'layout/footer.html' %}
@@ -110,6 +114,25 @@
           ga('create', 'UA-66675447-1', 'auto');
           ga('send', 'pageview');
 
+        </script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(window).scroll(function () {
+                    if ($(this).scrollTop() > 200) {
+                        $('.back-to-top').fadeIn();
+                    } else {
+                        $('.back-to-top').fadeOut();
+                     }
+                }); 
+            
+                $('.back-to-top').click(function () {
+                    $("html, body").animate({
+                        scrollTop: 0
+                    }, 600);
+                    return false;
+                });
+            });
         </script>
 
         {% block js %}

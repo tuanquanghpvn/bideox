@@ -10,5 +10,4 @@ urlpatterns = [
                                                             name="create"), 
     url(r'^parse/$', views.CheckInfoYoutubeView.as_view(),
                                                             name="parse"),
-
 ]

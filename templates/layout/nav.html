@@ -2,13 +2,13 @@
 
 <nav class="navbar-inverse navbar-static-top" role="navigation">
     <div class="container">
-        <div class="col-lg-4">
+        <div class="col-xs-4">
             <a href="/" class="badge-evt">
             	<img src="{% static 'frontend/images/logo.png' %}" height="50px" style="margin: 10px 5px;" />
             </a>
         </div>
 
-        <div class="col-lg-8">
+        <div class="col-xs-8">
             {% if request.user.is_authenticated %}
                 <ul class="badge-account-me nav-account nav navbar-nav navbar-right">
                     <li class="dropdown keepstyle">

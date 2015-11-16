@@ -118,7 +118,7 @@ DATABASES = {
         'NAME': 'bideox',
         'USER': 'root',
         'HOST': '127.0.0.1',
-        'PASSWORD': '',
+        'PASSWORD': 'abc!@#ABC',
         'PORT': 3306
     }
 }
@@ -153,3 +153,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 YOUTUBE_API_KEY = "AIzaSyDTSUSamcmOLp-rnGtLAYL02WqqcKGhgVc"
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'apps.core.paginations.StandardResultsSetPagination',
+}
